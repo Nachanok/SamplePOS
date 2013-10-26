@@ -1,5 +1,5 @@
 package universalpos.dao;
 
-public interface DaoInterface {
+public interface DataDAO {
 
 }
