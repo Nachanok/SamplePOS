@@ -1,4 +1,6 @@
-package com.example.universalposii;
+package universalpos.activity;
+
+import com.example.universalposii.R;
 
 import android.os.Bundle;
 import android.app.Activity;
