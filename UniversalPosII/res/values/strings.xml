@@ -4,5 +4,10 @@
     <string name="app_name">UniversalPos</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="Sale"></string>
+    <string name="Sales">Sale</string>
+    <string name="inventory">Inventory</string>
+    <string name="customer">Customer</string>
+    <string name="history">History</string>
 
 </resources>
