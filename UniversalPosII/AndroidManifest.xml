@@ -22,6 +22,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.example.universalposii.InventotyPage"
+            android:label="@string/title_activity_inventoty_page" >
+        </activity>
+        <activity
+            android:name="universalpos.activity.InventoryPage"
+            android:label="@string/title_activity_inventory_page" >
+        </activity>
+        <activity
+            android:name="universalpos.activity.CustomerPage"
+            android:label="@string/title_activity_customer_page" >
+        </activity>
+        <activity
+            android:name="universalpos.activity.HistoryPage"
+            android:label="@string/title_activity_history_page" >
+        </activity>
+        <activity
+            android:name="universalpos.activity.SalePage"
+            android:label="@string/title_activity_sale_page" >
+        </activity>
     </application>
 
 </manifest>

@@ -9,5 +9,10 @@
     <string name="inventory">Inventory</string>
     <string name="customer">Customer</string>
     <string name="history">History</string>
+    <string name="title_activity_inventoty_page">InventotyPage</string>
+    <string name="title_activity_inventory_page">InventoryPage</string>
+    <string name="title_activity_customer_page">CustomerPage</string>
+    <string name="title_activity_history_page">HistoryPage</string>
+    <string name="title_activity_sale_page">SalePage</string>
 
 </resources>
