@@ -24,8 +24,7 @@ public class InventoryController
 	
 	public boolean insert(String[] x)
 	{
-		// TODO Auto-generated method stub
-		return false;
+		return inventory.insert(x);
 	}
 
 	public String[] findByKey(String x) 

@@ -18,18 +18,7 @@ public class InventoryPage extends Activity
 {
 	private String[] items = null;
 	private ListView m_listview;
-    
-   // ArrayAdapter<String> adapter =
-//    new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
-//    m_listview.setAdapter(adapter);
-//	m_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//        public void onItemClick(AdapterView<?> myAdapter, View myView, int myItemInt, long mylng) {
-//          String selectedFromList =(String) (m_listview.getItemAtPosition(myItemInt));
-//
-//        }                 
-//  });
-	
-	private InventoryController inventoryController = new InventoryController(this);	//Create InventoryController
+	private InventoryController inventoryController = new InventoryController(this);//Create InventoryController
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{	
