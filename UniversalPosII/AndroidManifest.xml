@@ -42,6 +42,10 @@
             android:name="universalpos.activity.SalePage"
             android:label="@string/title_activity_sale_page" >
         </activity>
+        <activity
+            android:name="universalpos.activity.InventoryPage_add"
+            android:label="@string/title_activity_inventory_page_add" >
+        </activity>
     </application>
 
 </manifest>

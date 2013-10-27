@@ -14,5 +14,6 @@
     <string name="title_activity_customer_page">CustomerPage</string>
     <string name="title_activity_history_page">HistoryPage</string>
     <string name="title_activity_sale_page">SalePage</string>
+    <string name="title_activity_inventory_page_add">InventoryPage_add</string>
 
 </resources>

@@ -9,7 +9,7 @@ public class DAOFactory
 	{
 		this.context = context;
 	}
-	private DataDAO getDAO(String type)
+	public DataDAO getDAO(String type)
 	{
 		if(type.equalsIgnoreCase("history"))
 			return new HistoryDAO(context);
