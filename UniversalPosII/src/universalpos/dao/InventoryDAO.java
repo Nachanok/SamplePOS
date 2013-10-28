@@ -50,8 +50,30 @@ public class InventoryDAO extends SQLiteOpenHelper implements DataDAO
 	@Override
 	public boolean delete(int id) 
 	{
-		// TODO Auto-generated method stub
-		return false;
+		try 
+		 {
+			SQLiteDatabase db;
+	    		db = this.getWritableDatabase(); // Write Data	    		
+	    		/**
+	    		 * for API 11 and above
+			SQLiteStatement insertCmd;
+			String strSQL = "DELETE FROM " + TABLE_MEMBER
+					+ " WHERE MemberID = ? ";
+			
+			insertCmd = db.compileStatement(strSQL);
+			insertCmd.bindString(1, strMemberID);
+			
+			return insertCmd.executeUpdateDelete();
+			*
+			*/
+	    	db.delete(TABLE_INVENTORY, "ID = ?",new String[] { String.valueOf(id) });
+			db.close();
+			return true; // return rows delete.
+		 }
+		 catch (Exception e) 
+		 {
+		    return false;
+		 }
 	}
 
 	@Override

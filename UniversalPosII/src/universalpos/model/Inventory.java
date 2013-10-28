@@ -4,6 +4,7 @@ import universalpos.activity.InventoryPage_add;
 import universalpos.dao.DAOFactory;
 import universalpos.dao.DataDAO;
 import android.content.Context;
+import android.content.Intent;
 import android.widget.Toast;
 
 public class Inventory 
@@ -24,9 +25,8 @@ public class Inventory
 	}
 	
 	public boolean delete(int id) 
-	{
-		// TODO Auto-generated method stub
-		return false;
+	{	
+		return dataDao.delete(id);
 	}
 	
 	public boolean insert(String[] x)

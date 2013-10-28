@@ -74,7 +74,8 @@ public class InventoryPage_add extends Activity
 	@Override
     public boolean onKeyDown(int keyCode, KeyEvent event) 
 	{
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) 
+        {
             Intent a = new Intent(this,InventoryPage.class);
             a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(a);

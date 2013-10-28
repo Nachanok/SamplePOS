@@ -18,8 +18,7 @@ public class InventoryController
 	
 	public boolean delete(int id) 
 	{
-		// TODO Auto-generated method stub
-		return false;
+		return inventory.delete(id);
 	}
 	
 	public boolean insert(String[] x)
