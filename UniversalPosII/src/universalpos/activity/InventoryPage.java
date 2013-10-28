@@ -83,29 +83,30 @@ public class InventoryPage extends Activity
 	 */
 	public void clickDelete(View v)
 	{
-		//for delete dialog
-		alertDialog_Del = new AlertDialog.Builder(InventoryPage.this);
-		alertDialog_Del.setTitle("Confirm Delete...");
-		alertDialog_Del.setMessage("Are you sure you want delete this?\nThis product and all details in database will be destroy forever");
-		alertDialog_Del.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-		public void onClick(DialogInterface dialog,int which) 
-		{
-				String[] spliter = new String[30];
-				spliter = m_listview.getItemAtPosition(m_SelectedItem).toString().split(" ");
-				if(inventoryController.delete(Integer.parseInt(spliter[1])))
-				{
-					refresh();
-					Toast.makeText(getApplicationContext(), "Delete Successful!", Toast.LENGTH_SHORT).show();
-				}
-		}});
-		alertDialog_Del.setNegativeButton("NO", new DialogInterface.OnClickListener(){
-		public void onClick(DialogInterface dialog, int which) 
-		{
-			dialog.cancel();
-		}});
 		if(m_SelectedItem>=0)
 		{
-			alertDialog_Del.show();
+			//for delete dialog
+			alertDialog_Del = new AlertDialog.Builder(InventoryPage.this);
+			alertDialog_Del.setTitle("Confirm Delete...");
+			alertDialog_Del.setMessage("Are you sure you want delete this?\nThis product and all details in database will be destroy forever");
+			alertDialog_Del.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog,int which) 
+				{
+					String[] spliter = new String[30];
+					spliter = m_listview.getItemAtPosition(m_SelectedItem).toString().split(" ");
+					if(inventoryController.delete(Integer.parseInt(spliter[1])))
+					{
+						refresh();
+						Toast.makeText(getApplicationContext(), "Delete Successful!", Toast.LENGTH_SHORT).show();
+					}
+				}});
+			alertDialog_Del.setNegativeButton("NO", new DialogInterface.OnClickListener(){
+				public void onClick(DialogInterface dialog, int which) 
+				{
+					dialog.cancel();
+				}});
+		
+					alertDialog_Del.show();
 		}
 	}
 	public void clickEdit(View v)
