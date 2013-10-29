@@ -1,3 +1,6 @@
+/*
+* Add inventory page
+*/
 package universalpos.activity;
 
 import universalpos.controller.InventoryController;
