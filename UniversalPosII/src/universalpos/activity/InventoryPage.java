@@ -1,5 +1,7 @@
 package universalpos.activity;
 
+import javax.xml.datatype.Duration;
+
 import universalpos.controller.InventoryController;
 
 import com.example.universalposii.R;
@@ -11,6 +13,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -38,11 +41,12 @@ public class InventoryPage extends Activity
 			public void onItemClick(AdapterView<?> arg0, View v, int position, long id)
 			{		
 				m_listview.setSelected(true);
+				Toast.makeText(getApplicationContext(),position+"!!",Toast.LENGTH_LONG).show(); 
 				if(position != m_SelectedItem)
 				{	
-					m_listview.getChildAt(position).setBackgroundColor(Color.YELLOW);
 					if(m_SelectedItem!=-1)
-							m_listview.getChildAt(m_SelectedItem).setBackgroundColor(Color.WHITE);
+						m_listview.getChildAt(m_SelectedItem).setBackgroundColor(Color.rgb(128, 128, 128));
+					m_listview.getChildAt(position).setBackgroundColor(Color.WHITE);
 				}
 				m_SelectedItem = position;
 		    }});
@@ -71,11 +75,13 @@ public class InventoryPage extends Activity
 	{
 		items = inventoryController.findAll();
 		m_listview.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, items));
+		m_SelectedItem =-1;
 	}
 	public void refresh( )
 	{
 		items = inventoryController.findAll();
 		m_listview.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, items));
+		m_SelectedItem =-1;
 	}
 	/**
 	 * on click method to delete item
@@ -97,6 +103,7 @@ public class InventoryPage extends Activity
 					if(inventoryController.delete(Integer.parseInt(spliter[1])))
 					{
 						refresh();
+						m_SelectedItem=-1;
 						Toast.makeText(getApplicationContext(), "Delete Successful!", Toast.LENGTH_SHORT).show();
 					}
 				}});

@@ -70,6 +70,9 @@ public class InventoryPage_add extends Activity
 	public void clickCancel(View v)
 	{
 		super.onBackPressed();
+		Intent a = new Intent(this,InventoryPage.class);
+        a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(a);
 	}
 	@Override
     public boolean onKeyDown(int keyCode, KeyEvent event) 

@@ -19,7 +19,7 @@
         <ListView
             android:id="@+id/listView1"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="180dp"
             android:background="#808080" >
         </ListView>
     </LinearLayout>
@@ -64,7 +64,7 @@
         <ListView
             android:id="@+id/listView2"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="180dp"
             android:background="#808080" >
         </ListView>
     </LinearLayout>
@@ -76,25 +76,20 @@
         android:layout_alignLeft="@+id/linearLayout3"
         android:layout_below="@+id/linearLayout3" >
 
-        <EditText
-            android:id="@+id/editText1"
-            android:layout_width="120dp"
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="105dp"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="TotalPrice :" >
+            android:text="Total Price :"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <requestFocus />
-        </EditText>
-
-        <EditText
-            android:id="@+id/TotalPrice"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/TotalSell"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="numberDecimal"
-            android:text="0.0 .-" />
+            android:text="0.0 .-"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
     </LinearLayout>
 
     <LinearLayout

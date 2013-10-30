@@ -147,7 +147,7 @@ public class InventoryDAO extends SQLiteOpenHelper implements DataDAO
 						data = new String[cursor.getCount()];
 						int i= 0;
 						do {				
-							data[i] = "ID: "+cursor.getString(0)+"  \tProductID: "+cursor.getString(1)+"\nProductName: "+cursor.getString(2)+"\nBuy: "+cursor.getString(3)+"  \tSell: "+cursor.getString(4)+"  \tQnty: "+cursor.getString(5);
+							data[i] = "ID: "+cursor.getString(0)+" \tProductID: "+cursor.getString(1)+" \nProductName: "+cursor.getString(2)+" \nBuy: "+cursor.getString(3)+" \tSell: "+cursor.getString(4)+" \tQnty: "+cursor.getString(5);
 							//ID:xxx | ItemID:xxx | ItemName:xxx | Sell:xxx | Qnty:xxx
 							i++;
 						} while (cursor.moveToNext());						

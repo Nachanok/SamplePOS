@@ -22,7 +22,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="ProductID" >
+            android:hint="ProductID"
+            android:inputType="textPersonName" >
+
             <requestFocus />
         </EditText>
 
@@ -110,6 +112,6 @@
         android:layout_below="@+id/Quantity"
         android:ems="10"
         android:hint="Detail of Product (Optional)"
-        android:inputType="textMultiLine" />
+        android:inputType="textPersonName" />
 
 </RelativeLayout>
