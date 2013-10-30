@@ -55,4 +55,8 @@ public class Product
 	{
 		return productName;
 	}
+	public boolean isEqual(Product product)
+	{
+		return true;
+	}
 }

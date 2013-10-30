@@ -84,6 +84,7 @@ public class SalePage extends Activity
 		saleController.removeItemFromCart(m_listview_cart.getItemAtPosition(m_SelectedItem_cart)+"");
 		items_cart = saleController.showProduct();
 		m_listview_cart.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, items_cart));
+		m_SelectedItem_cart = -1;
 		totalUpdate();
 	}
 	public void clickAdd(View v)
@@ -91,6 +92,7 @@ public class SalePage extends Activity
 		saleController.addItemToCart(m_listview.getItemAtPosition(m_SelectedItem)+"");
 		items_cart = saleController.showProduct();
 		m_listview_cart.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, items_cart));
+		m_SelectedItem = -1;
 		totalUpdate();
 	}
 	public void clickEdit(View v)

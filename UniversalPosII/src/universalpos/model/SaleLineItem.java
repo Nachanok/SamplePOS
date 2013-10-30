@@ -2,7 +2,9 @@ package universalpos.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
+import android.R.integer;
 import android.content.Context;
 
 public class SaleLineItem 
@@ -70,7 +72,7 @@ public class SaleLineItem
 		String[] output = new String[productList.size()];
 		for(int i = 0;i<productList.size();i++)
 		{
-			output[pointer] = "ID : \t"+productList.get(i).getID()+"\nProductID : \t"+ productList.get(i).getProductID()+"\nProductName : \t" + productList.get(i).getProductName()+"\nPrice : \t" + productList.get(i).getPrice()+"\nQuantity : \t" + productList.get(i).getQuantity();
+			output[pointer] = "ID: \t"+productList.get(i).getID()+"\n ProductID: \t"+ productList.get(i).getProductID()+"\n ProductName: \t" + productList.get(i).getProductName()+"\n Price: \t" + productList.get(i).getPrice()+"\n Quantity: \t" + productList.get(i).getQuantity();
 				pointer++;
 		}
 		return output;
@@ -86,7 +88,12 @@ public class SaleLineItem
 	}
 	public boolean removeItemFromCart(String x) 
 	{
-		// TODO Auto-generated method stub
-		return false;
+		String[] data = x.split(" ");
+		System.out.println(data[1]+"!!!");
+		int compare = Integer.parseInt((data[1].trim()));
+		for(int i = 0;i<productList.size();i++)
+			if(productList.get(i).getID() == compare)
+				productList.remove(i);
+		return true;
 	}
 }
