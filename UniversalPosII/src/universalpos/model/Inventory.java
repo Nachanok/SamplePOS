@@ -24,16 +24,16 @@ public class Inventory
 		return false;
 	}
 	
-	public boolean delete(int id) 
+	public boolean delete(String id) 
 	{	
 		return dataDao.delete(id);
 	}
 	
 	public boolean insert(String[] x)
 	{
+		// TODO add product to product catalog
 		if(x[0].equals("") || x[1].equals("") || x[2].equals("") || x[3].equals(""))//ProductID,ProductName,BuyPrice,SellPrice can't be NULL
 		{
-        	 //Toast.makeText(context,"Insert Data Failed, ProductID,ProductName,BuyPrice,SellPrice can't be NULL",Toast.LENGTH_LONG).show();
 			return false;
 		}
 		if(x[5].equals(""))
@@ -41,16 +41,6 @@ public class Inventory
 		if(Integer.parseInt(x[4])<=0 || x[4].equals(""))//quantity can't less than 0
 			x[4]="1";
 		boolean isSuccess = dataDao.insert(x);
-		
-//      	if(isSuccess)
-//      	{
-//      		 Toast.makeText(context,"Insert Data Successfully",Toast.LENGTH_LONG).show(); 
-//      	}
-//      	else
-//      	{
-//         	 Toast.makeText(context,"Insert Data Failed.",Toast.LENGTH_LONG).show(); 
-//      	}
-     
 		return isSuccess;
 	}
 
@@ -62,10 +52,27 @@ public class Inventory
 
 	public String[] findAll() 
 	{
-		if(dataDao.findAll()!=null)
-			return dataDao.findAll();
+		/*
+		 * [x][0] = ID 			<int>
+		 * [x][1] = ProductID 	<String>
+		 * [x][2] = ProductName <String>
+		 * [x][3] = Buy 		<double>
+		 * [x][4] = Sell		<double>
+		 * [x][5] = Quantity 	<int>
+		 * [x][6] = Date 		<String>
+		 * [x][7] = Detail 		<String>
+		 */
+		String[][] list_2d = dataDao.findAll();
+		if(list_2d!=null)
+		{
+			String[] list_1d = new String[list_2d.length];
+			for(int i = 0;i< list_2d.length;i++)
+			{
+				list_1d[i] = list_2d[i][2]+" "+list_2d[i][4]+" "+list_2d[i][5];
+			}
+			return list_1d;
+		}
 		else
-			return  new String[]{"No item here!"};
-				
+			return new String[]{"No item here!"};				
 	}
 }

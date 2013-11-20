@@ -6,7 +6,7 @@ public class Product
 	private String productID;
 	private String productName;
 	private double price;
-	private int qnty;
+	private double qnty;
 	private String[] data = new String[20];
 	public Product(String x)
 	{
@@ -15,15 +15,15 @@ public class Product
 //		{
 //			System.out.println("data["+i+"] ="+data[i]);
 //		}
-		this.id = Integer.parseInt(data[1]);
-		this.productID =  data[3];
-		this.productName = data[5];
-		this.price = Double.parseDouble(data[9]);
-		this.qnty = Integer.parseInt(data[11]);
+//		this.id = 1;//Integer.parseInt(data[1]);
+//		this.productID =  "1";//data[3];
+		this.productName = data[0];
+		this.price = Double.parseDouble(data[2]);
+		this.qnty = Double.parseDouble(data[1]);
 	}
 	public int getQuantity()
 	{
-		return qnty;
+		return (int)qnty;
 	}
 	public boolean setQuantity(int input)
 	{

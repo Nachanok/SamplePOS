@@ -46,7 +46,7 @@ public class HistoryDAO extends SQLiteOpenHelper implements DataDAO
 	}
 
 	@Override
-	public boolean delete(int id) {
+	public boolean delete(String id) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -64,7 +64,7 @@ public class HistoryDAO extends SQLiteOpenHelper implements DataDAO
 	}
 
 	@Override
-	public String[] findAll() {
+	public String[][] findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}

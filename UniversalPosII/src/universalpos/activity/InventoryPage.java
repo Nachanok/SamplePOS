@@ -3,9 +3,11 @@ package universalpos.activity;
 import javax.xml.datatype.Duration;
 
 import universalpos.controller.InventoryController;
+import universalpos.dao.InventoryDAO;
 
 import com.example.universalposii.R;
 import android.os.Bundle;
+import android.R.anim;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -13,12 +15,15 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.view.Menu;
 import android.view.View;
+import android.widget.SimpleCursorAdapter;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.ListView;
+import android.database.Cursor;
+
 
 public class InventoryPage extends Activity 
 {
@@ -32,6 +37,7 @@ public class InventoryPage extends Activity
 	{	
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_inventory_page);
+		
 		//for listviewer
 		m_listview = (ListView)findViewById(R.id.listView1);
 		items = inventoryController.findAll();
@@ -40,6 +46,7 @@ public class InventoryPage extends Activity
 		m_listview.setOnItemClickListener(new OnItemClickListener(){
 			public void onItemClick(AdapterView<?> arg0, View v, int position, long id)
 			{		
+				//System.out.println(m_listview.getSelectedItem().toString());
 				m_listview.setSelected(true);
 				Toast.makeText(getApplicationContext(),position+"!!",Toast.LENGTH_LONG).show(); 
 				if(position != m_SelectedItem)
@@ -94,13 +101,15 @@ public class InventoryPage extends Activity
 			//for delete dialog
 			alertDialog_Del = new AlertDialog.Builder(InventoryPage.this);
 			alertDialog_Del.setTitle("Confirm Delete...");
-			alertDialog_Del.setMessage("Are you sure you want delete this?\nThis product and all details in database will be destroy forever");
+			alertDialog_Del.setMessage("Are you sure you want delete this?\nThis product and all details\n in database will be destroy forever");
 			alertDialog_Del.setPositiveButton("YES", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog,int which) 
 				{
-					String[] spliter = new String[30];
+					String[] spliter = new String[300];
+					System.out.println( m_listview.getItemAtPosition(m_SelectedItem).toString());
 					spliter = m_listview.getItemAtPosition(m_SelectedItem).toString().split(" ");
-					if(inventoryController.delete(Integer.parseInt(spliter[1])))
+					System.out.println(spliter[0]);
+					if(inventoryController.delete(spliter[0]))
 					{
 						refresh();
 						m_SelectedItem=-1;

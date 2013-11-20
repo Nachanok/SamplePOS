@@ -1,5 +1,7 @@
 package universalpos.controller;
 
+import universalpos.dao.InventoryDAO;
+import universalpos.model.Inventory;
 import universalpos.model.Product;
 import universalpos.model.SaleLineItem;
 import android.content.Context;
@@ -7,9 +9,10 @@ import android.content.Context;
 public class SaleController 
 {
 	private SaleLineItem saleLineItem = new SaleLineItem();
+	private Inventory inventory;
 	public SaleController(Context context) 
 	{
-		
+		inventory = new Inventory(context);
 	}
 	public boolean addItemToCart(String x)
 	{
@@ -34,6 +37,7 @@ public class SaleController
 	}
 	public boolean cancel()
 	{
+		saleLineItem.removeAll();
 		return false;
 	}
 }

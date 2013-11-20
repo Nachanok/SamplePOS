@@ -19,8 +19,10 @@ public class SaleLineItem
 	}
 	public boolean addItemToCart(String x)
 	{
+		System.out.println(x);
 		product = new Product(x);
-		boolean isIn = false;
+		//boolean isIn = false;
+		System.out.println(x);
 		productList.add(product);
 //		for(int i = 0;i<productList.length;i++)
 //		{
@@ -72,9 +74,11 @@ public class SaleLineItem
 		String[] output = new String[productList.size()];
 		for(int i = 0;i<productList.size();i++)
 		{
-			output[pointer] = "ID: \t"+productList.get(i).getID()+"\n ProductID: \t"+ productList.get(i).getProductID()+"\n ProductName: \t" + productList.get(i).getProductName()+"\n Price: \t" + productList.get(i).getPrice()+"\n Quantity: \t" + productList.get(i).getQuantity();
-				pointer++;
+			//output[pointer] = "ID: \t"+productList.get(i).getID()+"\n ProductID: \t"+ productList.get(i).getProductID()+"\n ProductName: \t" + productList.get(i).getProductName()+"\n Price: \t" + productList.get(i).getPrice()+"\n Quantity: \t" + productList.get(i).getQuantity();
+			output[pointer] = productList.get(i).getQuantity() +" "+productList.get(i).getProductName() +" "+productList.get(i).getPrice();	
+			pointer++;
 		}
+
 		return output;
 	}
 	public double getTotal()
@@ -90,10 +94,15 @@ public class SaleLineItem
 	{
 		String[] data = x.split(" ");
 		System.out.println(data[1]+"!!!");
-		int compare = Integer.parseInt((data[1].trim()));
+		String compare = data[1];//Integer.parseInt((data[1].trim()));
 		for(int i = 0;i<productList.size();i++)
-			if(productList.get(i).getID() == compare)
+			if(productList.get(i).getProductName().equals(compare))
 				productList.remove(i);
+		return true;
+	}
+	public boolean removeAll()
+	{
+		productList.clear();
 		return true;
 	}
 }

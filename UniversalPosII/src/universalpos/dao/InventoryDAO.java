@@ -8,6 +8,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
 public class InventoryDAO extends SQLiteOpenHelper implements DataDAO 
@@ -37,7 +38,7 @@ public class InventoryDAO extends SQLiteOpenHelper implements DataDAO
 	}
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) 
-	{	
+	{
 	}
 	
 	@Override
@@ -47,26 +48,13 @@ public class InventoryDAO extends SQLiteOpenHelper implements DataDAO
 		return false;
 	}
 
-	@Override
-	public boolean delete(int id) 
+	public boolean delete(String id) 
 	{
 		try 
 		 {
 			SQLiteDatabase db;
-	    		db = this.getWritableDatabase(); // Write Data	    		
-	    		/**
-	    		 * for API 11 and above
-			SQLiteStatement insertCmd;
-			String strSQL = "DELETE FROM " + TABLE_MEMBER
-					+ " WHERE MemberID = ? ";
-			
-			insertCmd = db.compileStatement(strSQL);
-			insertCmd.bindString(1, strMemberID);
-			
-			return insertCmd.executeUpdateDelete();
-			*
-			*/
-	    	db.delete(TABLE_INVENTORY, "ID = ?",new String[] { String.valueOf(id) });
+	    	db = this.getWritableDatabase(); // Write Data	    		
+	    	db.delete(TABLE_INVENTORY, "ProductName = ?",new String[] { String.valueOf(id) });
 			db.close();
 			return true; // return rows delete.
 		 }
@@ -105,23 +93,50 @@ public class InventoryDAO extends SQLiteOpenHelper implements DataDAO
 	    	   Val.put("Detail", x[5]);
 	    	   db.insert(TABLE_INVENTORY, null, Val);
 			db.close();
-			return true; // return rows inserted.
+			return true;
 		 } 
 		 catch (Exception e) 
 		 {
 		    return false;
 		 }
 	}
-
+	// TODO UNDERCONSTRUCT
 	@Override
 	public String[] findByKey(String x) 
 	{
-		// TODO Auto-generated method stub
-		return null;
+		try 
+		{
+			String arrData[] = null;	
+			
+			 SQLiteDatabase db;
+			 db = this.getReadableDatabase(); // Read Data
+				
+			 Cursor cursor = db.query(TABLE_INVENTORY, new String[] { "*" }, 
+					 	"ProductName=?",
+			            new String[] { String.valueOf(x) }, null, null, null, null);
+			 
+			 	if(cursor != null)
+			 	{
+					if (cursor.moveToFirst()) {
+						arrData = new String[cursor.getColumnCount()];
+						for(int i = 0;i<cursor.getColumnCount();i++)
+							arrData[i] = cursor.getString(i);
+					}
+			 	}
+			 	cursor.close();
+				db.close();
+				return arrData;
+				
+		 } 
+		catch (Exception e) 
+		 {
+		    return null;
+		 }
+
 	}
 
 	@Override
-	public String[] findAll() 
+	public String[][] findAll() 
 	{
 		/*
 		 * [x][0] = ID 			<int>
@@ -135,27 +150,33 @@ public class InventoryDAO extends SQLiteOpenHelper implements DataDAO
 		 */
 		try {
 			String arrData[][] = null;	
-			String data[] = null;
+			//String data[] = null;
 			 SQLiteDatabase db;
 			 db = this.getReadableDatabase(); //Read Data
 			 String strSQL = "SELECT  * FROM " + TABLE_INVENTORY;
 			 Cursor cursor = db.rawQuery(strSQL, null);
 			 	if(cursor != null)
 			 	{
-					if (cursor.moveToFirst()) {
+					if (cursor.moveToFirst())
+					{
 						arrData = new String[cursor.getCount()][cursor.getColumnCount()];
-						data = new String[cursor.getCount()];
+						//data = new String[cursor.getCount()];
 						int i= 0;
-						do {				
-							data[i] = "ID: "+cursor.getString(0)+" \tProductID: "+cursor.getString(1)+" \nProductName: "+cursor.getString(2)+" \nBuy: "+cursor.getString(3)+" \tSell: "+cursor.getString(4)+" \tQnty: "+cursor.getString(5);
+						do 
+						{				
+							//data[i] = "ID: "+cursor.getString(0)+" \tProductID: "+cursor.getString(1)+" \nProductName: "+cursor.getString(2)+" \nBuy: "+cursor.getString(3)+" \tSell: "+cursor.getString(4)+" \tQnty: "+cursor.getString(5);
 							//ID:xxx | ItemID:xxx | ItemName:xxx | Sell:xxx | Qnty:xxx
+							for(int j = 0;j<cursor.getColumnCount();j++)
+							{
+								arrData[i][j] = cursor.getString(j); 
+							}
 							i++;
-						} while (cursor.moveToNext());						
-
+						} 
+						while (cursor.moveToNext());						
 					}
 			 	}
 			 	cursor.close();
-			 	return data;
+			 	return arrData;
 		 } 
 		catch (Exception e) 
 		 {

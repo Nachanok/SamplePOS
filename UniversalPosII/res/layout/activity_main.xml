@@ -8,48 +8,64 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-   <LinearLayout
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="vertical" 
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:orientation="vertical" >
-
+        android:background="@drawable/gradient_ping">
+        
         <Button
             android:id="@+id/button1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#FFA8BB"
             android:onClick="goToSale"
-            android:text="@string/Sales" />
+            android:text="S a l e"
+            android:textStyle="normal" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#FF99AF"
             android:onClick="goToInventory"
-            android:text="@string/inventory" />
+            android:text="I n v e n t o r y"
+            android:textStyle="normal" />
 
         <Button
             android:id="@+id/button3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="C u s t o m e r" 
             android:onClick="goToCustomer"
-            android:text="@string/customer" />
+            android:background="#FF8EA5"
+            />
 
         <Button
             android:id="@+id/button4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="H i s t o r y"
             android:onClick="goToHistory"
-            android:text="@string/history" />
+            android:background="#FF849D"
+             />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="P r o d u c t C a t a l o g"
+            android:onClick="goToProductCatalog"
+            android:background="#FF7590" />
 
         <AnalogClock
             android:id="@+id/analogClock1"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
     </LinearLayout>
 
 </RelativeLayout>

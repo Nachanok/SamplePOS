@@ -16,7 +16,7 @@ public class InventoryController
 		return false;
 	}
 	
-	public boolean delete(int id) 
+	public boolean delete(String id) 
 	{
 		return inventory.delete(id);
 	}
