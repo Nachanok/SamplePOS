@@ -8,7 +8,6 @@ import android.content.Context;
 
 public class SaleController 
 {
-	private SaleLineItem saleLineItem = new SaleLineItem();
 	private Inventory inventory;
 	public SaleController(Context context) 
 	{
@@ -16,15 +15,15 @@ public class SaleController
 	}
 	public boolean addItemToCart(String x)
 	{
-		return saleLineItem.addItemToCart(x);
+		return true;//saleLineItem.addItemToCart(x);
 	}
 	public boolean removeItemFromCart(String x)
 	{
-		return saleLineItem.removeItemFromCart(x);
+		return true;//saleLineItem.removeItemFromCart(x);
 	}
 	public String[] showProduct()
 	{
-		return saleLineItem.showProduct();
+		return null;//saleLineItem.showProduct();
 	}
 	public String[] showLineItem()
 	{
@@ -33,11 +32,11 @@ public class SaleController
 	public double sale()
 	{
 		//todo make history and remove quantity
-		return 	saleLineItem.getTotal();
+		return 	0.0;//saleLineItem.getTotal();
 	}
 	public boolean cancel()
 	{
-		saleLineItem.removeAll();
+		//saleLineItem.removeAll();
 		return false;
 	}
 }

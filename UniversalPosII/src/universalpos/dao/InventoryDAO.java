@@ -1,8 +1,15 @@
 package universalpos.dao;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
+import universalpos.model.Product;
+import universalpos.model.SaleLineItem;
+
+import android.R.integer;
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -11,19 +18,17 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
-public class InventoryDAO extends SQLiteOpenHelper implements DataDAO 
+public class InventoryDAO extends SQLiteOpenHelper
 {
 	private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "PosDatabases";
     private static final String TABLE_INVENTORY = "inventory_db";
-    
-	public InventoryDAO(Context context) 
-	{
+  
+	public InventoryDAO(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 	@Override
-	public void onCreate(SQLiteDatabase db) 
-	{
+	public void onCreate(SQLiteDatabase db) {
 	    db.execSQL("CREATE TABLE " +
 	    		TABLE_INVENTORY + 
 	    		"(ID INTEGER PRIMARY KEY ," +
@@ -37,146 +42,121 @@ public class InventoryDAO extends SQLiteOpenHelper implements DataDAO
 	    Log.d("CREATE TABLE INVENTORY","Create Table Successfully.");
 	}
 	@Override
-	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) 
-	{
+	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 	}
-	
-	@Override
-	public boolean update(String[] x) 
-	{
-		// TODO Auto-generated method stub
+	public boolean update(String[] x) {
+		// TODO complete it
 		return false;
 	}
-
-	public boolean delete(String id) 
-	{
-		try 
-		 {
+	public boolean delete(String productID) {
+		// TODO delete from Primary id
+		try{
 			SQLiteDatabase db;
-	    	db = this.getWritableDatabase(); // Write Data	    		
-	    	db.delete(TABLE_INVENTORY, "ProductName = ?",new String[] { String.valueOf(id) });
+	    	db = this.getWritableDatabase();// Write Data permission	    		
+	    	db.delete(TABLE_INVENTORY, "ProductID = ?",new String[] { String.valueOf(productID) });
 			db.close();
 			return true; // return rows delete.
 		 }
-		 catch (Exception e) 
-		 {
-		    return false;
+		 catch (Exception e) {
+		    return false; 
 		 }
 	}
-
-	@Override
-	public boolean insert(String[] x) 
-	{
-		/*
-		 * x[0]	= ProductID 	<String>
-		 * x[1] = ProductName 	<String>
-		 * x[2] = Buy 			<double>
-		 * x[3] = Sell 			<double>
-		 * x[4] = Quantity		<int>
-		 * x[5] = Detail 		<String>
-		 */
-		try 
-		 {
+	@SuppressLint("SimpleDateFormat")
+	public boolean insert(Product product,int qnty){
+		try {
 			   Date now = new Date();
-			   String format = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z").format(now);//get date
+			   String Date = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z").format(now);
 			   SQLiteDatabase db;
-	    	   db = this.getWritableDatabase(); // Write Data
+	    	   db = this.getWritableDatabase();
 	    	   ContentValues Val = new ContentValues();
 	    	   String autoIncretement = null;
 	    	   Val.put("ID",autoIncretement);
-	    	   Val.put("ProductID", x[0]); 
-	    	   Val.put("ProductName", x[1]);
-	    	   Val.put("Buy",x[2]);
-	    	   Val.put("Sell",x[3]);
-	    	   Val.put("Quantity",x[4]);
-	    	   Val.put("Date", format);
-	    	   Val.put("Detail", x[5]);
+	    	   Val.put("ProductID",product.getProductID()); 
+	    	   Val.put("ProductName",product.getProductName());
+	    	   Val.put("Buy",product.getCost());
+	    	   Val.put("Sell",product.getPrice());
+	    	   Val.put("Quantity",qnty);
+	    	   Val.put("Date",Date);
+	    	   Val.put("Detail",product.getProductDetail());
 	    	   db.insert(TABLE_INVENTORY, null, Val);
 			db.close();
 			return true;
 		 } 
-		 catch (Exception e) 
-		 {
+		 catch (Exception e) {
 		    return false;
 		 }
 	}
-	// TODO UNDERCONSTRUCT
-	@Override
-	public String[] findByKey(String x) 
-	{
-		try 
-		{
-			String arrData[] = null;	
-			
-			 SQLiteDatabase db;
-			 db = this.getReadableDatabase(); // Read Data
-				
-			 Cursor cursor = db.query(TABLE_INVENTORY, new String[] { "*" }, 
-					 	"ProductName=?",
-			            new String[] { String.valueOf(x) }, null, null, null, null);
-			 
-			 	if(cursor != null)
-			 	{
-					if (cursor.moveToFirst()) {
+	public Product findByKey(String productID) {
+		// TODO not test it yet
+		try {
+			String arrData[] = null;
+			SQLiteDatabase db;
+			db = this.getReadableDatabase();
+			Cursor cursor = db.query(TABLE_INVENTORY, new String[] { "*" }, 
+					 	"ProductID=?",
+			            new String[] { String.valueOf(productID) }, null, null, null, null);
+			 	if(cursor != null){
+					if (cursor.moveToFirst()){
 						arrData = new String[cursor.getColumnCount()];
-						for(int i = 0;i<cursor.getColumnCount();i++)
-							arrData[i] = cursor.getString(i);
+							for(int i = 0;i<cursor.getColumnCount();i++)
+								arrData[i] = cursor.getString(i);
 					}
 			 	}
 			 	cursor.close();
 				db.close();
-				return arrData;
-				
+				Product product = new Product();
+				product.setId(Integer.parseInt(arrData[0]));
+				product.setProductID(arrData[1]);
+				product.setProductName(arrData[2]);
+				product.setCost(Double.parseDouble(arrData[3]));
+				product.setPrice(Double.parseDouble(arrData[4]));
+				product.setProductDetail(arrData[7]);
+				return product;
 		 } 
-		catch (Exception e) 
-		 {
+		catch (Exception e) {
 		    return null;
-		 }
-
+		}
 	}
-
-	@Override
-	public String[][] findAll() 
+	public SaleLineItem[] findAll() 
 	{
-		/*
-		 * [x][0] = ID 			<int>
-		 * [x][1] = ProductID 	<String>
-		 * [x][2] = ProductName <String>
-		 * [x][3] = Buy 		<double>
-		 * [x][4] = Sell		<double>
-		 * [x][5] = Quantity 	<int>
-		 * [x][6] = Date 		<String>
-		 * [x][7] = Detail 		<String>
-		 */
 		try {
-			String arrData[][] = null;	
-			//String data[] = null;
+			String arrData[] = null;
+			SaleLineItem[] saleLineItems = null;
+			SaleLineItem saleLineItem = null;
+			Product product;
 			 SQLiteDatabase db;
-			 db = this.getReadableDatabase(); //Read Data
+			 db = this.getReadableDatabase();
 			 String strSQL = "SELECT  * FROM " + TABLE_INVENTORY;
 			 Cursor cursor = db.rawQuery(strSQL, null);
 			 	if(cursor != null)
 			 	{
 					if (cursor.moveToFirst())
 					{
-						arrData = new String[cursor.getCount()][cursor.getColumnCount()];
-						//data = new String[cursor.getCount()];
+						arrData = new String[cursor.getColumnCount()];
+						saleLineItems = new SaleLineItem[cursor.getCount()];
 						int i= 0;
 						do 
 						{				
-							//data[i] = "ID: "+cursor.getString(0)+" \tProductID: "+cursor.getString(1)+" \nProductName: "+cursor.getString(2)+" \nBuy: "+cursor.getString(3)+" \tSell: "+cursor.getString(4)+" \tQnty: "+cursor.getString(5);
-							//ID:xxx | ItemID:xxx | ItemName:xxx | Sell:xxx | Qnty:xxx
 							for(int j = 0;j<cursor.getColumnCount();j++)
 							{
-								arrData[i][j] = cursor.getString(j); 
+								arrData[j] = cursor.getString(j);
 							}
+							product = new Product();
+							product.setId(Integer.parseInt(arrData[0]));
+							product.setProductID(arrData[1]);
+							product.setProductName(arrData[2]);
+							product.setCost(Double.parseDouble(arrData[3]));
+							product.setPrice(Double.parseDouble(arrData[4]));
+							product.setProductDetail(arrData[7]);
+							saleLineItem = new SaleLineItem(product, Integer.parseInt(arrData[5]));
+							saleLineItems[i] = saleLineItem;
 							i++;
 						} 
 						while (cursor.moveToNext());						
 					}
 			 	}
 			 	cursor.close();
-			 	return arrData;
+			 	return saleLineItems;
 		 } 
 		catch (Exception e) 
 		 {

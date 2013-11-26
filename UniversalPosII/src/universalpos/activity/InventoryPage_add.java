@@ -1,12 +1,7 @@
 package universalpos.activity;
-
 import universalpos.controller.InventoryController;
-
+import universalpos.model.Product;
 import com.example.universalposii.R;
-import com.example.universalposii.R.layout;
-import com.example.universalposii.R.menu;
-
-import android.R.integer;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
@@ -16,49 +11,48 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
 public class InventoryPage_add extends Activity 
 {
 	private InventoryController inventoryController = new InventoryController(this);
-	private InventoryPage inventoryPage = new InventoryPage();
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) 
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_inventory_page_add);
 	}
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
 		getMenuInflater().inflate(R.menu.inventory_page_add, menu);
 		return true;
 	}
-	/**
-	 * On click method to invork insert command through inventoryController
-	 * @return boolean true mean insert success false mean fail
-	 */
-	public boolean clickInsert(View v)
+	public boolean onInsert(View v)
 	{
 		boolean isSuccess = false;
 		inventoryController = new InventoryController((Context)this);
-		String[] x = new String[6];
-		x[0] = ((EditText)findViewById(R.id.ProductID)).getText().toString();
-		x[1] = ((EditText)findViewById(R.id.ProductName)).getText().toString();
-		x[2] = ((EditText)findViewById(R.id.BuyPrice)).getText().toString();
-		x[3] = ((EditText)findViewById(R.id.SellPrice)).getText().toString();
-		x[4] = ((EditText)findViewById(R.id.Quantity)).getText().toString();
-		x[5] = ((EditText)findViewById(R.id.Detail)).getText().toString();
-		isSuccess = inventoryController.insert(x);
+		String[] input = new String[6];
+		input[0] = ((EditText)findViewById(R.id.ProductID)).getText().toString();
+		input[1] = ((EditText)findViewById(R.id.ProductName)).getText().toString();
+		input[2] = ((EditText)findViewById(R.id.BuyPrice)).getText().toString();
+		input[3] = ((EditText)findViewById(R.id.SellPrice)).getText().toString();
+		input[4] = ((EditText)findViewById(R.id.Quantity)).getText().toString();
+		input[5] = ((EditText)findViewById(R.id.Detail)).getText().toString();
+		Product product = new Product(input);
+		int qnty = Integer.parseInt(input[4]);
+		isSuccess = inventoryController.insert(product,qnty);
 		if(isSuccess)
 		{
-			clearAll(v);
+			Toast.makeText(this,"Add "+input[1]+" success!",Toast.LENGTH_LONG).show();
+			onClearAll(v);
+		}
+		else
+		{
+			Toast.makeText(this,"Add "+input[1]+" fail!",Toast.LENGTH_LONG).show();
+			//TODO why fail?
 		}
       	return isSuccess;
 	}
-	/**
-	 * Clear all text field method 
-	 * @param v
-	 */
-	public void clearAll(View v)
+	public void onClearAll(View v)
 	{
 		((EditText)findViewById(R.id.ProductID)).setText("");
 		((EditText)findViewById(R.id.ProductName)).setText("");
@@ -67,7 +61,7 @@ public class InventoryPage_add extends Activity
 		((EditText)findViewById(R.id.Quantity)).setText("");
 		((EditText)findViewById(R.id.Detail)).setText("");
 	}
-	public void clickCancel(View v)
+	public void onCancel(View v)
 	{
 		super.onBackPressed();
 		Intent a = new Intent(this,InventoryPage.class);

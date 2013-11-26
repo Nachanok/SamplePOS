@@ -41,7 +41,7 @@ public class SalePage extends Activity
 		setContentView(R.layout.activity_sale_page);
 		//for listviewer (Product)
 				m_listview = (ListView)findViewById(R.id.listView1);
-				items = inventoryController.findAll();
+				//items = inventoryController.findAll();
 				m_listview.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, items));
 				m_listview.setTextFilterEnabled(true);
 				m_listview.setOnItemClickListener(new OnItemClickListener(){
@@ -97,7 +97,6 @@ public class SalePage extends Activity
 	{
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle("How many?");
-
 		// Set up the input
 		final EditText input = new EditText(this);
 		// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text

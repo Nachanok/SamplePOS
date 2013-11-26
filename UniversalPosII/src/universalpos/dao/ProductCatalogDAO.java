@@ -1,5 +1,10 @@
 package universalpos.dao;
 
-public class ProductCatalogDAO {
+import android.content.Context;
 
+public class ProductCatalogDAO {
+	public ProductCatalogDAO(Context context)
+	{
+		
+	}
 }

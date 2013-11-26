@@ -23,7 +23,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="ProductID" >
+            android:hint="ProductID" 
+            android:inputType="textPersonName">
             <requestFocus />
         </EditText>
 
@@ -40,8 +41,8 @@
             android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/gradient_ping"
-            android:onClick="clickInsert"
+            android:background="#AEFF00"
+            android:onClick="onInsert"
             android:text="Add" />
 
     </LinearLayout>
@@ -52,9 +53,10 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/linearLayout2"
         android:layout_alignLeft="@+id/linearLayout2"
+        android:layout_alignRight="@+id/Detail"
         android:layout_marginBottom="15dp"
-        android:onClick="clearAll"
-        android:background="@drawable/gradient_ping"
+        android:background="#F6FF56"
+        android:onClick="onClearAll"
         android:text="ClearAll" />
 
     <EditText
@@ -107,7 +109,7 @@
         android:layout_below="@+id/Quantity"
         android:ems="10"
         android:hint="Detail of Product (Optional)"
-        android:inputType="textMultiLine" />
+        android:inputType="textPersonName" />
 
     <Button
         android:id="@+id/button2"
@@ -115,8 +117,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/linearLayout2"
-        android:background="@drawable/gradient_ping"
-        android:onClick="clickCancel"
+        android:background="#FF6B6D"
+        android:onClick="onCancel"
         android:text="Cancel" />
 
 </RelativeLayout>

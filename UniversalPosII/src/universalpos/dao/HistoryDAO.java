@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class HistoryDAO extends SQLiteOpenHelper implements DataDAO
+public class HistoryDAO extends SQLiteOpenHelper
 {
 	private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "PosDatabases";
@@ -39,31 +39,26 @@ public class HistoryDAO extends SQLiteOpenHelper implements DataDAO
 	{	
 	}
 	
-	@Override
 	public boolean update(String[] x) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
 	public boolean delete(String id) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
 	public boolean insert(String[] x) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
 	public String[] findByKey(String x) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public String[][] findAll() {
 		// TODO Auto-generated method stub
 		return null;

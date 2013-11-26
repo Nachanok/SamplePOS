@@ -2,22 +2,24 @@ package universalpos.dao;
 
 import android.content.Context;
 
-public class DAOFactory 
-{
+public class DAOFactory {
 	private Context context; 
-	public DAOFactory(Context context)
-	{
+	public DAOFactory(Context context){
 		this.context = context;
 	}
-	public DataDAO getDAO(String type)
-	{
-		if(type.equalsIgnoreCase("history"))
-			return new HistoryDAO(context);
-		else if(type.equalsIgnoreCase("customer"))
-			return new CustomerDAO(context);
-		else if(type.equalsIgnoreCase("inventory"))
+	public InventoryDAO getInventoryDAO(){
 			return new InventoryDAO(context);
-		else
-			return null;
+	}
+	public ProductCatalogDAO getProductCatalogDAO(){
+		return new ProductCatalogDAO(context);
+	}
+//	public SaleRecordDAO getHistoryDAO(){
+//		return new SaleRecordDAO(context);
+//	}
+//	public EventRecordDAO getEventRecordDAO(){
+//		return new EventRecordDAO(context);
+//	}
+	public CustomerDAO getCustomerDAO(){
+		return new CustomerDAO(context);
 	}
 }

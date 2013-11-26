@@ -3,76 +3,55 @@ import universalpos.activity.InventoryPage;
 import universalpos.activity.InventoryPage_add;
 import universalpos.dao.DAOFactory;
 import universalpos.dao.DataDAO;
+import universalpos.dao.InventoryDAO;
+import universalpos.dao.ProductCatalogDAO;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
 public class Inventory 
 {
-	private Context context;
-	private DataDAO dataDao;
+	private InventoryDAO inventoryDao;
+	private ProductCatalogDAO productCatalogDao;
 	private DAOFactory daoFac;
 	public Inventory(Context context) 
 	{
-		this.context = context;
-		daoFac  = new DAOFactory(context);
-		dataDao = daoFac.getDAO("inventory");
+		daoFac = new DAOFactory(context);
+		inventoryDao = daoFac.getInventoryDAO();
+		productCatalogDao = daoFac.getProductCatalogDAO();
 	}
-	public boolean update(String[] x) 
-	{
-		// TODO Auto-generated method stub
+	public boolean update(String[] x) {
+		// TODO complete it
 		return false;
 	}
-	
-	public boolean delete(String id) 
-	{	
-		return dataDao.delete(id);
+	public boolean delete(String id) {	
+		// TODO also delete in product catalog
+		return inventoryDao.delete(id);
 	}
-	
-	public boolean insert(String[] x)
-	{
-		// TODO add product to product catalog
-		if(x[0].equals("") || x[1].equals("") || x[2].equals("") || x[3].equals(""))//ProductID,ProductName,BuyPrice,SellPrice can't be NULL
-		{
+	public boolean insert(Product product,int qnty){
+		if(product.getProductID().equals("") || product.getProductName().equals("") || product.getPrice()<0 || product.getCost()<0)
 			return false;
+		if(qnty<0)
+			qnty = 0;
+		if(product.getProductDetail().equals(""))
+			product.setProductDetail("N/A");
+		// TODO not duplicate items
+		if(findByKey(product.getProductID())!= null){
+			if(findByKey(product.getProductID()).getProductID().equals(product.getProductID())){
+				// TODO Edit qnty
+			}
 		}
-		if(x[5].equals(""))
-			x[5]="N/A";
-		if(Integer.parseInt(x[4])<=0 || x[4].equals(""))//quantity can't less than 0
-			x[4]="1";
-		boolean isSuccess = dataDao.insert(x);
-		return isSuccess;
+		else{
+			inventoryDao.insert(product,qnty);
+		}
+		// TODO add product to product catalog
+		return true;
 	}
-
-	public String[] findByKey(String x) 
-	{
-		// TODO Auto-generated method stub
+	public Product findByKey(String productID){
+		// TODO complete it
 		return null;
 	}
-
-	public String[] findAll() 
-	{
-		/*
-		 * [x][0] = ID 			<int>
-		 * [x][1] = ProductID 	<String>
-		 * [x][2] = ProductName <String>
-		 * [x][3] = Buy 		<double>
-		 * [x][4] = Sell		<double>
-		 * [x][5] = Quantity 	<int>
-		 * [x][6] = Date 		<String>
-		 * [x][7] = Detail 		<String>
-		 */
-		String[][] list_2d = dataDao.findAll();
-		if(list_2d!=null)
-		{
-			String[] list_1d = new String[list_2d.length];
-			for(int i = 0;i< list_2d.length;i++)
-			{
-				list_1d[i] = list_2d[i][2]+" "+list_2d[i][4]+" "+list_2d[i][5];
-			}
-			return list_1d;
-		}
-		else
-			return new String[]{"No item here!"};				
+	public SaleLineItem[] findAll() {
+		return inventoryDao.findAll();		
 	}
 }

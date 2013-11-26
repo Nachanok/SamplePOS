@@ -6,57 +6,55 @@ public class Product
 	private String productID;
 	private String productName;
 	private double price;
-	private double qnty;
-	private String[] data = new String[20];
-	public Product(String x)
+	private double cost;
+	private String productDetail;
+	public Product(String[] input)
 	{
-		data = x.split(" ");
-//		for(int i=0;i<data.length;i++)
-//		{
-//			System.out.println("data["+i+"] ="+data[i]);
-//		}
-//		this.id = 1;//Integer.parseInt(data[1]);
-//		this.productID =  "1";//data[3];
-		this.productName = data[0];
-		this.price = Double.parseDouble(data[2]);
-		this.qnty = Double.parseDouble(data[1]);
+		this.id 			= 	-1;		// -1 is default before get primary id from Database
+		this.productID 		=	input[0];
+		this.productName 	= 	input[1];
+		this.price 			=	Double.parseDouble(input[2]);
+		this.cost 			= 	Double.parseDouble(input[3]);
+		//this.qnty		 	=	input[4];
+		this.productDetail	=	input[5];
 	}
-	public int getQuantity()
-	{
-		return (int)qnty;
+	public Product(){
 	}
-	public boolean setQuantity(int input)
-	{
-		qnty = input;
-		return true;
-	}
-	public double getTotalPrice()
-	{
-		return price*qnty;
-	}
-	public double getPrice()
-	{
-		return price;
-	}
-	public boolean setPrice(double input)
-	{
-		price = input;
-		return true;
-	}
-	public int getID()
-	{
+	public int getId() {
 		return id;
 	}
-	public String getProductID()
-	{
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getProductID() {
 		return productID;
 	}
-	public String getProductName()
-	{
+	public void setProductID(String productID) {
+		this.productID = productID;
+	}
+	public String getProductName() {
 		return productName;
 	}
-	public boolean isEqual(Product product)
-	{
-		return true;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	public double getCost() {
+		return cost;
+	}
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
+	public String getProductDetail() {
+		return productDetail;
+	}
+	public void setProductDetail(String productDetail) {
+		this.productDetail = productDetail;
+	}
+	
 }

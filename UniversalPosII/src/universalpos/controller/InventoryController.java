@@ -1,6 +1,8 @@
 package universalpos.controller;
 
 import universalpos.model.Inventory;
+import universalpos.model.Product;
+import universalpos.model.SaleLineItem;
 import android.content.Context;
 
 public class InventoryController 
@@ -10,30 +12,21 @@ public class InventoryController
 	{
 		this.inventory = new Inventory(context);
 	}
-	public boolean update(String[] x) 
-	{
-		// TODO Auto-generated method stub
+	public boolean update(String[] x) {	
+		// TODO complete it
 		return false;
 	}
-	
-	public boolean delete(String id) 
-	{
+	public boolean delete(String id) {
 		return inventory.delete(id);
 	}
-	
-	public boolean insert(String[] x)
-	{
-		return inventory.insert(x);
+	public boolean insert(Product product,int qnty){
+		return inventory.insert(product,qnty);
 	}
-
-	public String[] findByKey(String x) 
-	{
-		// TODO Auto-generated method stub
+	public String[] findByKey(String x) {
+		// TODO complete it
 		return null;
 	}
-
-	public String[] findAll() 
-	{
+	public SaleLineItem[] findAll() {
 		return inventory.findAll();
 	}
 }
