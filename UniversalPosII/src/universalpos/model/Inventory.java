@@ -12,20 +12,17 @@ import android.widget.Toast;
 public class Inventory 
 {
 	private InventoryDAO inventoryDao;
-	private ProductCatalogDAO productCatalogDao;
 	private DAOFactory daoFac;
 	public Inventory(Context context) 
 	{
 		daoFac = new DAOFactory(context);
 		inventoryDao = daoFac.getInventoryDAO();
-		productCatalogDao = daoFac.getProductCatalogDAO();
 	}
 	public boolean update(String[] x) {
 		// TODO complete it
 		return false;
 	}
 	public boolean delete(String id) {	
-		// TODO also delete in product catalog
 		return inventoryDao.delete(id);
 	}
 	public boolean insert(Product product,int qnty){
