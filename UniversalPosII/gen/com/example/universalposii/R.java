@@ -34,56 +34,58 @@ public final class R {
         public static final int list_drawable=0x7f020006;
     }
     public static final class id {
-        public static final int BuyPrice=0x7f09000c;
-        public static final int Detail=0x7f09000a;
-        public static final int ProductID=0x7f090006;
-        public static final int ProductName=0x7f09000b;
-        public static final int Quantity=0x7f09000e;
-        public static final int SellPrice=0x7f09000d;
+        public static final int BuyPrice=0x7f09000a;
+        public static final int Detail=0x7f090008;
+        public static final int ProductID=0x7f090004;
+        public static final int ProductName=0x7f090009;
+        public static final int Quantity=0x7f09000c;
+        public static final int SellPrice=0x7f09000b;
         public static final int TotalPrice=0x7f090017;
         public static final int action_settings=0x7f09001f;
         public static final int analogClock1=0x7f090012;
-        public static final int button1=0x7f090008;
-        public static final int button2=0x7f09000f;
-        public static final int button3=0x7f090009;
+        public static final int button1=0x7f090006;
+        public static final int button2=0x7f09000d;
+        public static final int button3=0x7f090007;
         public static final int button4=0x7f090010;
         public static final int button5=0x7f090011;
         public static final int checkBox=0x7f09001e;
         public static final int editText1=0x7f090016;
         public static final int imageView1=0x7f090002;
-        public static final int imageView2=0x7f090005;
-        public static final int imageView3=0x7f090004;
+        public static final int imageView2=0x7f09000f;
+        public static final int imageView3=0x7f09000e;
         public static final int linearLayout1=0x7f090000;
-        public static final int linearLayout2=0x7f090007;
+        public static final int linearLayout2=0x7f090005;
         public static final int linearLayout3=0x7f090013;
         public static final int linearLayout4=0x7f090015;
-        public static final int linearLayout5=0x7f090018;
         public static final int listView1=0x7f090003;
         public static final int listView2=0x7f090014;
-        public static final int myview=0x7f090019;
-        public static final int tableLayout2=0x7f09001a;
-        public static final int tableRow5=0x7f09001b;
+        public static final int myview=0x7f090018;
+        public static final int tableLayout2=0x7f090019;
+        public static final int tableRow5=0x7f09001a;
+        public static final int textPrice=0x7f09001c;
         public static final int textView1=0x7f090001;
-        public static final int txtDetail=0x7f09001d;
-        public static final int txtTitle=0x7f09001c;
+        public static final int txtTitle=0x7f09001b;
+        public static final int txtqnty=0x7f09001d;
     }
     public static final class layout {
         public static final int activity_customer_page=0x7f030000;
         public static final int activity_history_page=0x7f030001;
-        public static final int activity_inventory_page=0x7f030002;
-        public static final int activity_inventory_page_add=0x7f030003;
-        public static final int activity_main=0x7f030004;
-        public static final int activity_productcatalog=0x7f030005;
-        public static final int activity_sale_page=0x7f030006;
-        public static final int adapter_listview=0x7f030007;
+        public static final int activity_invenroty_page_edit=0x7f030002;
+        public static final int activity_inventory_page=0x7f030003;
+        public static final int activity_inventory_page_add=0x7f030004;
+        public static final int activity_main=0x7f030005;
+        public static final int activity_productcatalog=0x7f030006;
+        public static final int activity_sale_page=0x7f030007;
+        public static final int adapter_listview=0x7f030008;
     }
     public static final class menu {
         public static final int customer_page=0x7f080000;
         public static final int history_page=0x7f080001;
         public static final int inventory_page=0x7f080002;
         public static final int inventory_page_add=0x7f080003;
-        public static final int main=0x7f080004;
-        public static final int sale_page=0x7f080005;
+        public static final int inventory_page_edit=0x7f080004;
+        public static final int main=0x7f080005;
+        public static final int sale_page=0x7f080006;
     }
     public static final class string {
         public static final int Sale=0x7f060003;
@@ -95,9 +97,11 @@ public final class R {
         public static final int history=0x7f060007;
         public static final int inventory=0x7f060005;
         public static final int title_activity_customer_page=0x7f06000a;
+        public static final int title_activity_edit=0x7f06000e;
         public static final int title_activity_history_page=0x7f06000b;
         public static final int title_activity_inventory_page=0x7f060009;
         public static final int title_activity_inventory_page_add=0x7f06000d;
+        public static final int title_activity_inventory_page_edit=0x7f06000f;
         public static final int title_activity_inventoty_page=0x7f060008;
         public static final int title_activity_sale_page=0x7f06000c;
     }

@@ -11,19 +11,30 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-public class InventoryPage_add extends Activity{
+public class InventoryPage_edit extends Activity {
 	private InventoryController inventoryController = new InventoryController(this);
+	private int primaryID=-1;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_inventory_page_add);
+		setContentView(R.layout.activity_invenroty_page_edit);
+		Bundle extras = getIntent().getExtras();
+		Intent i = getIntent();
+		primaryID = extras.getInt("primaryID");
+		String[] editLineItem = i.getStringArrayExtra("editLineItem");
+		((EditText)findViewById(R.id.ProductID)).setText(editLineItem[0]);
+		((EditText)findViewById(R.id.ProductName)).setText(editLineItem[1]);
+		((EditText)findViewById(R.id.BuyPrice)).setText(editLineItem[2]);
+		((EditText)findViewById(R.id.SellPrice)).setText(editLineItem[3]);
+		((EditText)findViewById(R.id.Quantity)).setText(editLineItem[4]);
+		((EditText)findViewById(R.id.Detail)).setText(editLineItem[5]);
 	}
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu){
-		getMenuInflater().inflate(R.menu.inventory_page_add, menu);
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.inventory_page_edit, menu);
 		return true;
 	}
-	public boolean onInsert(View v){
+	public boolean onUpdate(View v){
 		boolean isSuccess = false;
 		int qnty = -1;
 		inventoryController = new InventoryController((Context)this);
@@ -37,13 +48,13 @@ public class InventoryPage_add extends Activity{
 		Product product = new Product(input);
 		if(!input[4].equals(""))
 		qnty = Integer.parseInt(input[4]);
-		isSuccess = inventoryController.insert(product,qnty);
+		isSuccess = inventoryController.update(primaryID, product, qnty);
 		if(isSuccess){
-			Toast.makeText(this,"Add "+input[1]+" success!",Toast.LENGTH_LONG).show();
+			Toast.makeText(this,"Update "+input[1]+" success!",Toast.LENGTH_LONG).show();
 			onClearAll(v);
 		}
 		else{
-			Toast.makeText(this,"Add "+input[1]+" fail!",Toast.LENGTH_LONG).show();
+			Toast.makeText(this,"Update "+input[1]+" fail!",Toast.LENGTH_LONG).show();
 			//TODO why fail?
 		}
       	return isSuccess;

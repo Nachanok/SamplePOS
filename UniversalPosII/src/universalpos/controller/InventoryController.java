@@ -12,9 +12,8 @@ public class InventoryController
 	{
 		this.inventory = new Inventory(context);
 	}
-	public boolean update(String[] x) {	
-		// TODO complete it
-		return false;
+	public boolean update(int id,Product product,int qnty) {	
+		return inventory.update(id, product , qnty);
 	}
 	public boolean delete(String id) {
 		return inventory.delete(id);
@@ -22,9 +21,8 @@ public class InventoryController
 	public boolean insert(Product product,int qnty){
 		return inventory.insert(product,qnty);
 	}
-	public String[] findByKey(String x) {
-		// TODO complete it
-		return null;
+	public SaleLineItem findByKey(String productID) {
+		return inventory.findByKey(productID);
 	}
 	public SaleLineItem[] findAll() {
 		return inventory.findAll();

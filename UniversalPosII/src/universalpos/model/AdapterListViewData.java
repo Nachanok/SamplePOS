@@ -46,7 +46,8 @@ public class AdapterListViewData extends BaseAdapter{
             holderListAdapter = new HolderListAdapter();
             //Link it with list view
             holderListAdapter.txtTitle = (TextView) convertView.findViewById(R.id.txtTitle);
-            holderListAdapter.txtDetail = (TextView) convertView.findViewById(R.id.txtDetail);
+            holderListAdapter.txtPrice = (TextView) convertView.findViewById(R.id.textPrice);
+            holderListAdapter.txtqnty = (TextView) convertView.findViewById(R.id.txtqnty);
             holderListAdapter.checkBox = (CheckBox) convertView.findViewById(R.id.checkBox);
             convertView.setTag(holderListAdapter);
         }else{
@@ -54,7 +55,8 @@ public class AdapterListViewData extends BaseAdapter{
         }
         //Display data position by position
         holderListAdapter.txtTitle.setText(listData.get(position).getProduct().getProductName());
-        holderListAdapter.txtDetail.setText(listData.get(position).getQnty()+"");
+        holderListAdapter.txtqnty.setText(listData.get(position).getQnty()+" ea");
+        holderListAdapter.txtPrice.setText(listData.get(position).getProduct().getPrice()+" .-");
         //Display which check box that check
         holderListAdapter.checkBox.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {

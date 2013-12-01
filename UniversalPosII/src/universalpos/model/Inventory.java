@@ -1,26 +1,22 @@
 package universalpos.model;
-import universalpos.activity.InventoryPage;
-import universalpos.activity.InventoryPage_add;
 import universalpos.dao.DAOFactory;
-import universalpos.dao.DataDAO;
 import universalpos.dao.InventoryDAO;
-import universalpos.dao.ProductCatalogDAO;
 import android.content.Context;
-import android.content.Intent;
-import android.widget.Toast;
-
-public class Inventory 
-{
+public class Inventory {
 	private InventoryDAO inventoryDao;
 	private DAOFactory daoFac;
-	public Inventory(Context context) 
-	{
+	public Inventory(Context context) {
 		daoFac = new DAOFactory(context);
 		inventoryDao = daoFac.getInventoryDAO();
 	}
-	public boolean update(String[] x) {
-		// TODO complete it
-		return false;
+	public boolean update(int id,Product product,int qnty) {
+		if(product.getProductID().equals("") || product.getProductName().equals("") || product.getPrice()<0 || product.getCost()<0)
+			return false;
+		if(qnty<0)
+			qnty = 0;
+		if(product.getProductDetail().equals(""))
+			product.setProductDetail("N/A");
+		return inventoryDao.update(id, product, qnty);
 	}
 	public boolean delete(String id) {	
 		return inventoryDao.delete(id);
@@ -32,21 +28,22 @@ public class Inventory
 			qnty = 0;
 		if(product.getProductDetail().equals(""))
 			product.setProductDetail("N/A");
-		// TODO not duplicate items
-		if(findByKey(product.getProductID())!= null){
-			if(findByKey(product.getProductID()).getProductID().equals(product.getProductID())){
-				// TODO Edit qnty
+		SaleLineItem stockLineItem = findByKey(product.getProductID());
+		Product stockProduct = null;
+		if(stockLineItem != null)
+			stockProduct = stockLineItem.getProduct();
+		if(stockProduct != null){
+			if(stockProduct.getProductID().equals(product.getProductID())){
+				inventoryDao.update(stockProduct.getId(),product,stockLineItem.getQnty()+qnty);
 			}
 		}
 		else{
 			inventoryDao.insert(product,qnty);
 		}
-		// TODO add product to product catalog
 		return true;
 	}
-	public Product findByKey(String productID){
-		// TODO complete it
-		return null;
+	public SaleLineItem findByKey(String productID){
+		return inventoryDao.findByKey(productID);
 	}
 	public SaleLineItem[] findAll() {
 		return inventoryDao.findAll();		

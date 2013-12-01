@@ -1,41 +1,21 @@
 package universalpos.activity;
-
 import java.util.ArrayList;
-
-import javax.xml.datatype.Duration;
-
 import universalpos.controller.InventoryController;
-import universalpos.dao.InventoryDAO;
 import universalpos.model.AdapterListViewData;
-import universalpos.model.Product;
 import universalpos.model.SaleLineItem;
-
 import com.example.universalposii.R;
 import android.os.Bundle;
-import android.R.anim;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
-import android.widget.SimpleCursorAdapter;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
 import android.widget.ListView;
-import android.database.Cursor;
-
-
-public class InventoryPage extends Activity 
-{
+public class InventoryPage extends Activity {
 	 private AdapterListViewData adapterListViewData; //Adapter List ที่เรากำหนดขึ้นเอง
 	 private ArrayList<SaleLineItem> listData = new ArrayList<SaleLineItem>();
 	 private SaleLineItem[] saleLineItems = null;
@@ -71,49 +51,76 @@ public class InventoryPage extends Activity
 		startActivity(inventoryintent);
 	}
 	public void goToEditItem(View v){
+		int count = listViewData.getAdapter().getCount();
+			for (int i = 0; i < count; i++) {
+				itemLayout = (LinearLayout)listViewData.getChildAt(i); // Find by under LinearLayout
+				checkboxes = (CheckBox)itemLayout.findViewById(R.id.checkBox);
+						if(checkboxes.isChecked()){
+							Intent inventoryintent = new Intent(getApplicationContext(), InventoryPage_edit.class);
+							SaleLineItem object = saleLineItems[i];
+							String[] input = new String[6];
+							input[0] = object.getProduct().getProductID();
+							input[1] = object.getProduct().getProductName();
+							input[2] = object.getProduct().getCost()+"";
+							input[3] = object.getProduct().getPrice()+"";
+							input[4] = object.getQnty()+"";
+							input[5] = object.getProduct().getProductDetail();
+							inventoryintent.putExtra("editLineItem", input);
+							inventoryintent.putExtra("primaryID", object.getProduct().getId());
+							startActivity(inventoryintent);
+							Toast.makeText(InventoryPage.this,saleLineItems[i].getProduct().getProductName()+" is editing . . .",Toast.LENGTH_LONG).show();
+							onRefresh();
+							break;
+						}
+			}
 	}
 	public void onRefresh(){
+		listData.clear();
 		saleLineItems = inventoryController.findAll();
-        for(int i=0;i<saleLineItems.length;i++)
-        	listData.add(saleLineItems[i]); 
-        adapterListViewData = new AdapterListViewData(getBaseContext(),listData);
-        listViewData.setAdapter(adapterListViewData);
+		if(saleLineItems!= null){
+			for(int i=0;i<saleLineItems.length;i++)
+				listData.add(saleLineItems[i]); 
+			adapterListViewData = new AdapterListViewData(getBaseContext(),listData);
+			listViewData.setAdapter(adapterListViewData);
+		}
+		adapterListViewData.notifyDataSetChanged();
 	}
 	public void onDelete(View v)
 	{
-			int count = listViewData.getAdapter().getCount();
-			System.out.println(count);
-				for (int i = 0; i <= count-1; i++) {
-					itemLayout = (LinearLayout)listViewData.getChildAt(i); // Find by under LinearLayout
-					checkboxes = (CheckBox)itemLayout.findViewById(R.id.checkBox);
-							if(checkboxes.isChecked())
-							{
-								System.out.println("!");
-								//inventoryController.delete(saleLineItems[i].getProduct().getProductID());
-								System.out.println("??");
-								//Toast.makeText(InventoryPage.this,saleLineItems[i].getProduct().getProductID()+" are deleting. . .",Toast.LENGTH_LONG).show();
-								//onRefresh();
-								System.out.println("refresh!");
-							}
-				}
-//		alertDialog_Del = new AlertDialog.Builder(InventoryPage.this);
-//		alertDialog_Del.setTitle("Confirm Delete...");
-//		alertDialog_Del.setMessage("Are you sure you want delete this?\nThis product and all details\n in database will be destroy forever");
-//		alertDialog_Del.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-//			public void onClick(DialogInterface dialog,int which) 
-//			{
-//				System.out.println( listViewData);
-//			}});
-//		alertDialog_Del.setNegativeButton("NO", new DialogInterface.OnClickListener(){
-//			public void onClick(DialogInterface dialog, int which) 
-//			{
-//				dialog.cancel();
-//			}});
-//	
-//				alertDialog_Del.show();
+		boolean isCheckBoxAvalaible = false;
+		int count = listViewData.getAdapter().getCount();
+		for (int i = 0; i < count; i++) {
+			itemLayout = (LinearLayout)listViewData.getChildAt(i); // Find by under LinearLayout
+			checkboxes = (CheckBox)itemLayout.findViewById(R.id.checkBox);
+					if(checkboxes.isChecked()){
+						isCheckBoxAvalaible = true;
+					}
+		}
+		if(!isCheckBoxAvalaible)
+			return;
+		alertDialog_Del = new AlertDialog.Builder(InventoryPage.this);
+		alertDialog_Del.setTitle("Confirm Delete...");
+		alertDialog_Del.setMessage("Are you sure to delete an item(s)?\n Product(s) and all details in database will be destroy.");
+		alertDialog_Del.setNegativeButton("YES", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog,int which) 
+			{
+				int count = listViewData.getAdapter().getCount();
+					for (int i = 0; i < count; i++) {
+						itemLayout = (LinearLayout)listViewData.getChildAt(i); // Find by under LinearLayout
+						checkboxes = (CheckBox)itemLayout.findViewById(R.id.checkBox);
+								if(checkboxes.isChecked()){
+									inventoryController.delete(saleLineItems[i].getProduct().getProductID());
+									Toast.makeText(InventoryPage.this,saleLineItems[i].getProduct().getProductName()+" was deleted . . .",Toast.LENGTH_LONG).show();
+								}
+					}
+					onRefresh();
+			}});
+		alertDialog_Del.setPositiveButton("NO", new DialogInterface.OnClickListener(){
+			public void onClick(DialogInterface dialog, int which) 
+			{
+				dialog.cancel();
+			}});
+				alertDialog_Del.show();
 	}
-	public void onUpdate(View v){
-		
-	}
-
+	
 }

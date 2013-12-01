@@ -1,23 +1,18 @@
 package universalpos.dao;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-
 import universalpos.model.Product;
 import universalpos.model.SaleLineItem;
-
-import android.R.integer;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
+@SuppressLint("SimpleDateFormat")
 public class InventoryDAO extends SQLiteOpenHelper
 {
 	private static final int DATABASE_VERSION = 1;
@@ -44,18 +39,35 @@ public class InventoryDAO extends SQLiteOpenHelper
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 	}
-	public boolean update(String[] x) {
-		// TODO complete it
-		return false;
+	public boolean update(int id,Product product,int qnty){
+		try {
+			SQLiteDatabase db;
+	    		db = this.getWritableDatabase(); // Write Data
+	    		Date now = new Date();
+	    		String Date = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z").format(now);
+	    		ContentValues Val = new ContentValues();
+	    		Val.put("ProductID",product.getProductID()); 
+	    		Val.put("ProductName",product.getProductName());
+	    		Val.put("Buy",product.getCost());
+	    		Val.put("Sell",product.getPrice());
+	    		Val.put("Quantity",qnty);
+	    		Val.put("Date",Date);
+	    		Val.put("Detail",product.getProductDetail());
+	    		db.update(TABLE_INVENTORY, Val, " ID = ?",
+	                   new String[] { String.valueOf(id) });
+			db.close();
+			return true; // return rows updated.
+		 } catch (Exception e) {
+		    return  false;
+		 }
 	}
 	public boolean delete(String productID) {
-		// TODO delete from Primary id
 		try{
 			SQLiteDatabase db;
 	    	db = this.getWritableDatabase();// Write Data permission	    		
 	    	db.delete(TABLE_INVENTORY, "ProductID = ?",new String[] { String.valueOf(productID) });
 			db.close();
-			return true; // return rows delete.
+			return true;
 		 }
 		 catch (Exception e) {
 		    return false; 
@@ -86,7 +98,7 @@ public class InventoryDAO extends SQLiteOpenHelper
 		    return false;
 		 }
 	}
-	public Product findByKey(String productID) {
+	public SaleLineItem findByKey(String productID) {
 		// TODO not test it yet
 		try {
 			String arrData[] = null;
@@ -111,7 +123,8 @@ public class InventoryDAO extends SQLiteOpenHelper
 				product.setCost(Double.parseDouble(arrData[3]));
 				product.setPrice(Double.parseDouble(arrData[4]));
 				product.setProductDetail(arrData[7]);
-				return product;
+				SaleLineItem saleLineItem = new SaleLineItem(product, Integer.parseInt(arrData[5]));
+				return saleLineItem;
 		 } 
 		catch (Exception e) {
 		    return null;

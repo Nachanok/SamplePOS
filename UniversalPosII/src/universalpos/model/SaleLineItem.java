@@ -1,10 +1,8 @@
 package universalpos.model;
-public class SaleLineItem 
-{
+public class SaleLineItem{
 	private Product product;
 	private int qnty;
-	public SaleLineItem(Product product,int qnty)
-	{
+	public SaleLineItem(Product product,int qnty){
 		this.product = product;
 		this.qnty = qnty;
 	}

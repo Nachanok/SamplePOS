@@ -13,8 +13,14 @@ public class Product
 		this.id 			= 	-1;		// -1 is default before get primary id from Database
 		this.productID 		=	input[0];
 		this.productName 	= 	input[1];
-		this.price 			=	Double.parseDouble(input[2]);
-		this.cost 			= 	Double.parseDouble(input[3]);
+		if(input[2].equals("") || input[3].equals("")){
+			this.price 		= 	-1;
+			this.cost		=	-1;
+		}
+		else{
+			this.price 		=	Double.parseDouble(input[2]);
+			this.cost 		= 	Double.parseDouble(input[3]);
+		}
 		//this.qnty		 	=	input[4];
 		this.productDetail	=	input[5];
 	}

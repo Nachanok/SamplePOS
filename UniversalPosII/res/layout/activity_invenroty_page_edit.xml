@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_ping"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".InventoryPage_edit" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/ProductID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="ProductID" 
+            android:inputType="textPersonName">
+            <requestFocus />
+        </EditText>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true">
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#AEFF00"
+            android:onClick="onUpdate"
+            android:text="Edit" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearLayout2"
+        android:layout_alignLeft="@+id/linearLayout2"
+        android:layout_alignRight="@+id/Detail"
+        android:layout_marginBottom="15dp"
+        android:background="#F6FF56"
+        android:onClick="onClearAll"
+        android:text="ClearAll" />
+
+    <EditText
+        android:id="@+id/ProductName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/linearLayout1"
+        android:layout_below="@+id/linearLayout1"
+        android:ems="10"
+        android:hint="ProductName"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/BuyPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ProductName"
+        android:layout_below="@+id/ProductName"
+        android:ems="10"
+        android:hint="BuyPrice"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/SellPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/BuyPrice"
+        android:layout_below="@+id/BuyPrice"
+        android:ems="10"
+        android:hint="SellPrice"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/Quantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/SellPrice"
+        android:layout_below="@+id/SellPrice"
+        android:ems="10"
+        android:hint="Quantity"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/Detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button3"
+        android:layout_alignLeft="@+id/Quantity"
+        android:layout_alignRight="@+id/Quantity"
+        android:layout_below="@+id/Quantity"
+        android:ems="10"
+        android:hint="Detail of Product (Optional)"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/linearLayout2"
+        android:background="#FF6B6D"
+        android:onClick="onCancel"
+        android:text="Cancel" />
+
+</RelativeLayout>
