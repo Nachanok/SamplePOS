@@ -1,4 +1,7 @@
 package universalpos.activity;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import universalpos.dao.CustomerDAO;
 import universalpos.dao.EventRecordDAO;
 import universalpos.dao.SaleRecordDAO;
@@ -35,8 +38,6 @@ public class MainActivity extends Activity {
 		startActivity(inventoryintent);
 	}
 	public void goToCustomer(View v){
-		CustomerDAO customerDao = new CustomerDAO(this);
-		customerDao.getWritableDatabase();
 		 Intent customerIntent = new Intent(getApplicationContext(), CustomerPage.class);
 		startActivity(customerIntent);
 	}

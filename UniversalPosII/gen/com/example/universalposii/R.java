@@ -44,7 +44,7 @@ public final class R {
         public static final int SellPrice=0x7f090011;
         public static final int Tel=0x7f09000d;
         public static final int TotalPrice=0x7f09001a;
-        public static final int action_settings=0x7f09002b;
+        public static final int action_settings=0x7f09002a;
         public static final int analogClock1=0x7f090015;
         public static final int button1=0x7f090008;
         public static final int button2=0x7f09000a;
@@ -65,13 +65,12 @@ public final class R {
         public static final int myview=0x7f09001b;
         public static final int tableLayout2=0x7f09001c;
         public static final int tableRow5=0x7f09001d;
-        public static final int textAction=0x7f090029;
         public static final int textCustomer=0x7f090027;
         public static final int textCustomerID=0x7f090022;
         public static final int textCustomerName=0x7f090023;
         public static final int textCustomerTel=0x7f090024;
         public static final int textDate=0x7f090025;
-        public static final int textEffect=0x7f09002a;
+        public static final int textEffect=0x7f090029;
         public static final int textEvent=0x7f090026;
         public static final int textItemList=0x7f090028;
         public static final int textPrice=0x7f09001f;

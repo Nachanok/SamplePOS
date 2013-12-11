@@ -1,8 +1,11 @@
 package universalpos.activity;
 import java.util.ArrayList;
+
+import universalpos.controller.HistoryController;
 import universalpos.controller.InventoryController;
-import universalpos.model.AdapterListViewData;
 import universalpos.model.SaleLineItem;
+import universalpos.model.adapter.AdapterListViewData;
+
 import com.example.universalposii.R;
 import android.os.Bundle;
 import android.app.Activity;
@@ -24,6 +27,7 @@ public class InventoryPage extends Activity {
 	 private CheckBox checkboxes;
 	 private AlertDialog.Builder alertDialog_Del;
 	 private InventoryController inventoryController;
+	 private HistoryController historyController = new HistoryController(this);
 	 public InventoryPage() {
 		inventoryController = new InventoryController(this);
 	}
@@ -110,9 +114,11 @@ public class InventoryPage extends Activity {
 						checkboxes = (CheckBox)itemLayout.findViewById(R.id.checkBox);
 								if(checkboxes.isChecked()){
 									inventoryController.delete(saleLineItems[i].getProduct().getProductID());
-									Toast.makeText(InventoryPage.this,saleLineItems[i].getProduct().getProductName()+" was deleted . . .",Toast.LENGTH_LONG).show();
+									historyController.insertEventRecord(saleLineItems[i].getQnty()+"ea of "+saleLineItems[i].getProduct().getProductName()+" was deleted.");
+									Toast.makeText(InventoryPage.this,"\'"+saleLineItems[i].getQnty()+"\' ea of\'"+saleLineItems[i].getProduct().getProductName()+"\' was deleted . . .",Toast.LENGTH_LONG).show();
 								}
 					}
+					
 					onRefresh();
 			}});
 		alertDialog_Del.setPositiveButton("NO", new DialogInterface.OnClickListener(){

@@ -30,9 +30,8 @@
 
                         <TextView
                             android:id="@+id/textDate"
-                            android:layout_width="239dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:text="Date"
                             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -45,24 +44,14 @@
 
                         <TextView
                             android:id="@+id/textItemList"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:text="ItemList" />
 
                         <TextView
-                            android:id="@+id/textAction"
+                            android:id="@+id/textEffect"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Action"
-                            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                        <TextView
-                            android:id="@+id/textEffect"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:text="Effect" />
 
                     </LinearLayout>

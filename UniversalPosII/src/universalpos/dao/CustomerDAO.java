@@ -116,7 +116,6 @@ public class CustomerDAO extends SQLiteOpenHelper
 			 Cursor cursor = db.rawQuery(strSQL, null);
 			 	if(cursor != null)
 			 	{
-			 		System.out.println("MOO!");
 					if (cursor.moveToFirst())
 					{
 						arrData = new String[cursor.getColumnCount()];

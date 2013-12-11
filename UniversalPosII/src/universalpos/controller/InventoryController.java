@@ -5,8 +5,7 @@ import universalpos.model.Product;
 import universalpos.model.SaleLineItem;
 import android.content.Context;
 
-public class InventoryController 
-{
+public class InventoryController {
 	private Inventory inventory;
 	public InventoryController(Context context)
 	{

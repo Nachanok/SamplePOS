@@ -1,4 +1,5 @@
 package universalpos.activity;
+import universalpos.controller.HistoryController;
 import universalpos.controller.InventoryController;
 import universalpos.model.Product;
 import com.example.universalposii.R;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 public class InventoryPage_add extends Activity{
 	private InventoryController inventoryController = new InventoryController(this);
+	private HistoryController historyController = new HistoryController(this);
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -39,6 +41,7 @@ public class InventoryPage_add extends Activity{
 		qnty = Integer.parseInt(input[4]);
 		isSuccess = inventoryController.insert(product,qnty);
 		if(isSuccess){
+			historyController.insertEventRecord("\'"+input[4]+"\' ea of \'"+input[1]+"\' was added.");
 			Toast.makeText(this,"Add "+input[1]+" success!",Toast.LENGTH_LONG).show();
 			onClearAll(v);
 		}

@@ -1,6 +1,8 @@
-package universalpos.model;
+package universalpos.model.adapter;
 
 import java.util.ArrayList;
+
+import universalpos.model.SaleLineItem;
 
 import com.example.universalposii.R;
 

@@ -1,4 +1,4 @@
-package universalpos.model;
+package universalpos.model.adapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 public class HolderListAdapter {

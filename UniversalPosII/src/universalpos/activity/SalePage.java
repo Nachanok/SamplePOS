@@ -1,8 +1,9 @@
 package universalpos.activity;
 import universalpos.controller.InventoryController;
 import universalpos.controller.SaleController;
-import universalpos.model.AdapterListViewData;
 import universalpos.model.SaleLineItem;
+import universalpos.model.adapter.AdapterListViewData;
+
 import com.example.universalposii.R;
 import android.os.Bundle;
 import android.app.Activity;

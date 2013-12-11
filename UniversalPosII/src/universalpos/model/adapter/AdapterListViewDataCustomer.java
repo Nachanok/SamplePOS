@@ -1,5 +1,8 @@
-package universalpos.model;
+package universalpos.model.adapter;
 import java.util.ArrayList;
+
+import universalpos.model.Customer;
+
 import com.example.universalposii.R;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -68,6 +71,4 @@ public class AdapterListViewDataCustomer extends BaseAdapter{
         });
         return convertView;
 	}
-	
-	
 }

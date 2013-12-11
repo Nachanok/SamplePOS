@@ -1,4 +1,5 @@
 package universalpos.activity;
+import universalpos.controller.HistoryController;
 import universalpos.controller.InventoryController;
 import universalpos.model.Product;
 import com.example.universalposii.R;
@@ -13,7 +14,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 public class InventoryPage_edit extends Activity {
 	private InventoryController inventoryController = new InventoryController(this);
+	private HistoryController historyController = new HistoryController(this);
 	private int primaryID=-1;
+	private String old_event,new_event;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -28,6 +31,7 @@ public class InventoryPage_edit extends Activity {
 		((EditText)findViewById(R.id.SellPrice)).setText(editLineItem[3]);
 		((EditText)findViewById(R.id.Quantity)).setText(editLineItem[4]);
 		((EditText)findViewById(R.id.Detail)).setText(editLineItem[5]);
+		old_event ="Product : "+editLineItem[0]+"\nName : "+editLineItem[1]+"\nBuyPrice : "+editLineItem[2]+"\nSellPrice : "+editLineItem[3]+"\nQuantity : "+editLineItem[4]+"\nDetail : "+editLineItem[5];
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -45,11 +49,13 @@ public class InventoryPage_edit extends Activity {
 		input[3] = ((EditText)findViewById(R.id.SellPrice)).getText().toString();
 		input[4] = ((EditText)findViewById(R.id.Quantity)).getText().toString();
 		input[5] = ((EditText)findViewById(R.id.Detail)).getText().toString();
+		new_event ="Product : "+input[0]+"\nName : "+input[1]+"\nBuyPrice : "+input[2]+"\nSellPrice : "+input[3]+"\nQuantity : "+input[4]+"\nDetail : "+input[5];
 		Product product = new Product(input);
 		if(!input[4].equals(""))
 		qnty = Integer.parseInt(input[4]);
 		isSuccess = inventoryController.update(primaryID, product, qnty);
 		if(isSuccess){
+			historyController.insertEventRecord(old_event+ "\n <--- has been edited to ---> \n"+new_event);
 			Toast.makeText(this,"Update "+input[1]+" success!",Toast.LENGTH_LONG).show();
 			onClearAll(v);
 		}

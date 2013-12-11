@@ -1,8 +1,9 @@
 package universalpos.activity;
 import java.util.ArrayList;
 import universalpos.controller.CustomerController;
-import universalpos.model.AdapterListViewDataCustomer;
 import universalpos.model.Customer;
+import universalpos.model.adapter.AdapterListViewDataCustomer;
+
 import com.example.universalposii.R;
 import android.os.Bundle;
 import android.app.Activity;
@@ -35,7 +36,6 @@ public class CustomerPage extends Activity {
         customers = customerController.findAll();
         if(customers!= null)
         {
-        	 System.out.println("!!!!");
         	for(int i=0;i<customers.length;i++)
         		listData.add(customers[i]); 
         	adapterListViewDataCustomer = new AdapterListViewDataCustomer(getBaseContext(),listData);
