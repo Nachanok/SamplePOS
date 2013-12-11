@@ -26,6 +26,7 @@ public class SaleController
 		for(int i = 0;i<saleLineItems.size();i++){	
 			SaleLineItem dbLineItem = inventory.findByKey(saleLineItems.get(i).getProduct().getProductID());
 			inventory.update(saleLineItems.get(i).getProduct().getId(),saleLineItems.get(i).getProduct(), dbLineItem.getQnty()-saleLineItems.get(i).getQnty());
+			//TODO make history
 		}
 		return 	true;
 	}

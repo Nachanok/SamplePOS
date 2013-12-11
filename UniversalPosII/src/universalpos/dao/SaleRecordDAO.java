@@ -5,13 +5,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class HistoryDAO extends SQLiteOpenHelper
+public class SaleRecordDAO extends SQLiteOpenHelper
 {
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "PosDatabases";
-    private static final String TABLE_HISTORY = "history_db";
+    private static final String TABLE_SALE_RECORD = "sale_record_db";
     
-	public HistoryDAO(Context context) 
+	public SaleRecordDAO(Context context) 
 	{
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
@@ -19,49 +19,37 @@ public class HistoryDAO extends SQLiteOpenHelper
 	public void onCreate(SQLiteDatabase db) 
 	{
 	    db.execSQL("CREATE TABLE " +
-	    		TABLE_HISTORY + 
+	    		TABLE_SALE_RECORD + 
 	    		"(ID INTEGER PRIMARY KEY ," +
+	    		" Date TEXT," +
 	    		" ItemID INTEGER,"+
 	    		" ItemName TEXT,"+
+	    		" Quantity INTEGER,"+
+	    		" Status TEXT,"+
+	    		" Price REAL,"+
 	    		" CustomerID INTEGER,"+
 	    		" CustomerName TEXT,"+
-	    		" Event TEXT,"+
-	    		" Buy REAL,"+
-	    		" Sell REAL,"+
-	    		" Quantity INTEGER,"+
-	    		" Total REAL,"+
-	    		" Date TEXT," +
+	    		" TotalPrice REAL,"+
 	    		" Detail TEXT)");
-	    Log.d("CREATE TABLE HISTORY","Create Table Successfully.");
+	    Log.d("CREATE TABLE SALE RECORD","Create Table Successfully.");
 	}
 	@Override
-	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) 
-	{	
+	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {	
 	}
-	
 	public boolean update(String[] x) {
-		// TODO Auto-generated method stub
 		return false;
 	}
-
 	public boolean delete(String id) {
-		// TODO Auto-generated method stub
 		return false;
 	}
-
 	public boolean insert(String[] x) {
-		// TODO Auto-generated method stub
+		// TODO make insert specify to sale record
 		return false;
 	}
-
 	public String[] findByKey(String x) {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
 	public String[][] findAll() {
-		// TODO Auto-generated method stub
 		return null;
 	}
-	
 }

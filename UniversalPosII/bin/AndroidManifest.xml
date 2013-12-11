@@ -50,6 +50,22 @@
             android:name="universalpos.activity.InventoryPage_edit"
             android:label="@string/title_activity_inventory_page_edit" >
         </activity>
+        <activity
+            android:name="universalpos.activity.EventRecordPage"
+            android:label="@string/title_activity_event_record_page" >
+        </activity>
+        <activity
+            android:name="universalpos.activity.SaleRecordPage"
+            android:label="@string/title_activity_sale_record_page" >
+        </activity>
+        <activity
+            android:name="universalpos.activity.CustomerPage_add"
+            android:label="@string/title_activity_customer_page_add" >
+        </activity>
+        <activity
+            android:name="universalpos.activity.CustomerPage_edit"
+            android:label="@string/title_activity_customer_page_edit" >
+        </activity>
     </application>
 
 </manifest>

@@ -7,7 +7,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/gradient_ping"
-    tools:context=".InventoryPage" >
+    tools:context=".SaleRecordPage" >
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
@@ -20,20 +20,13 @@
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="History : "
+            android:text="S a l e R e c o r d : "
             android:textSize="10pt" />
 
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_add"
-            android:onClick="goToAddHistory" />
-
-        
 
     </LinearLayout>
 
+    
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,14 +36,15 @@
         android:layout_below="@+id/linearLayout1"
         android:background="#ffffff"
         android:orientation="horizontal" >
-
-		<ListView
+        
+        <ListView
             android:id="@+id/listView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="3pt"
             android:scrollbars="vertical" >
         </ListView>
+        
 
     </LinearLayout>
 

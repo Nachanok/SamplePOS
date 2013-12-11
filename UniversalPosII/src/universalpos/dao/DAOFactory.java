@@ -10,15 +10,12 @@ public class DAOFactory {
 	public InventoryDAO getInventoryDAO(){
 			return new InventoryDAO(context);
 	}
-	public ProductCatalogDAO getProductCatalogDAO(){
-		return new ProductCatalogDAO(context);
+	public SaleRecordDAO getSaleRecordDAO(){
+		return new SaleRecordDAO(context);
 	}
-//	public SaleRecordDAO getHistoryDAO(){
-//		return new SaleRecordDAO(context);
-//	}
-//	public EventRecordDAO getEventRecordDAO(){
-//		return new EventRecordDAO(context);
-//	}
+		public EventRecordDAO getEventRecordDAO(){
+		return new EventRecordDAO(context);
+	}
 	public CustomerDAO getCustomerDAO(){
 		return new CustomerDAO(context);
 	}

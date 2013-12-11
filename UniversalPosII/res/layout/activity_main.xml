@@ -49,8 +49,8 @@
             android:id="@+id/button4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="H i s t o r y"
-            android:onClick="goToHistory"
+            android:text="S a l e R e c o r d"
+            android:onClick="goToSaleRecord"
             android:background="#FF849D"
              />
 
@@ -58,8 +58,8 @@
             android:id="@+id/button5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="P r o d u c t C a t a l o g"
-            android:onClick="goToProductCatalog"
+            android:text="E v e n t R e c o r d"
+            android:onClick="goToEventRecord"
             android:background="#FF7590" />
 
         <AnalogClock

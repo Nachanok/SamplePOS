@@ -12,8 +12,8 @@ public class Inventory {
 	public boolean update(int id,Product product,int qnty) {
 		if(product.getProductID().equals("") || product.getProductName().equals("") || product.getPrice()<0 || product.getCost()<0)
 			return false;
-		if(qnty<0)
-			qnty = 0;
+//		if(qnty<0) //debug in case add null or negative value
+//			qnty = 0;
 		if(product.getProductDetail().equals(""))
 			product.setProductDetail("N/A");
 		return inventoryDao.update(id, product, qnty);

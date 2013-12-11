@@ -17,5 +17,9 @@
     <string name="title_activity_inventory_page_add">InventoryPage_add</string>
     <string name="title_activity_edit">Edit</string>
     <string name="title_activity_inventory_page_edit">Edit</string>
+    <string name="title_activity_event_record_page">EventRecordPage</string>
+    <string name="title_activity_sale_record_page">SaleRecordPage</string>
+    <string name="title_activity_customer_page_add">CustomerPage_add</string>
+    <string name="title_activity_customer_page_edit">CustomerPage_edit</string>
 
 </resources>

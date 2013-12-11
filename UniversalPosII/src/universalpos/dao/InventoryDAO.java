@@ -15,7 +15,7 @@ import android.util.Log;
 @SuppressLint("SimpleDateFormat")
 public class InventoryDAO extends SQLiteOpenHelper
 {
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "PosDatabases";
     private static final String TABLE_INVENTORY = "inventory_db";
   
@@ -99,7 +99,6 @@ public class InventoryDAO extends SQLiteOpenHelper
 		 }
 	}
 	public SaleLineItem findByKey(String productID) {
-		// TODO not test it yet
 		try {
 			String arrData[] = null;
 			SQLiteDatabase db;
@@ -139,7 +138,7 @@ public class InventoryDAO extends SQLiteOpenHelper
 			Product product;
 			 SQLiteDatabase db;
 			 db = this.getReadableDatabase();
-			 String strSQL = "SELECT  * FROM " + TABLE_INVENTORY;
+			 String strSQL = "SELECT  * FROM " + TABLE_INVENTORY +" ORDER BY ProductName";
 			 Cursor cursor = db.rawQuery(strSQL, null);
 			 	if(cursor != null)
 			 	{
